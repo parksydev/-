@@ -26,7 +26,16 @@ export default function MealSection() {
           .split('T')[0];
         
         const response = await fetch(`/api/meals?date=${today}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
+        
+        if (!data) {
+          throw new Error('데이터가 비어있습니다');
+        }
         
         setMeals({
           breakfast: data.breakfast || { 메뉴: [], 칼로리: " " },
@@ -35,6 +44,12 @@ export default function MealSection() {
         });
       } catch (error) {
         console.error('급식 정보를 불러오는데 실패했습니다:', error);
+        // 에러 발생 시 기본값으로 설정
+        setMeals({
+          breakfast: { 메뉴: [], 칼로리: "정보 없음" },
+          lunch: { 메뉴: [], 칼로리: "정보 없음" },
+          dinner: { 메뉴: [], 칼로리: "정보 없음" }
+        });
       }
     };
 

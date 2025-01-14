@@ -19,6 +19,17 @@ export async function GET(request: Request) {
     );
 
     const data = await response.json();
+    
+    // API 응답 에러 체크 추가
+    if (data.RESULT?.CODE === 'INFO-200') {
+      // 데이터가 없는 경우 빈 응답 반환
+      return NextResponse.json(meals);
+    }
+
+    if (!data.mealServiceDietInfo) {
+      console.error('NEIS API 응답 데이터 오류:', data);
+      throw new Error('급식 데이터 형식이 올바르지 않습니다.');
+    }
 
     // NEIS API 응답 데이터를 우리 형식으로 변환
     const meals = {
@@ -47,7 +58,10 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error('NEIS API 호출 실패:', error);
     return NextResponse.json(
-      { error: '급식 정보를 가져오는데 실패했습니다.' },
+      { 
+        error: '급식 정보를 가져오는데 실패했습니다.',
+        details: error instanceof Error ? error.message : '알 수 없는 오류'
+      },
       { status: 500 }
     );
   }
