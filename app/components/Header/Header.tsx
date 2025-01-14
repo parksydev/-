@@ -47,7 +47,7 @@ export default function Header() {
           </Link>
           <div className="flex items-center gap-6 ml-4">
             <Link 
-              href="/home/specialroom" 
+              href="/home/specialroom"
               className="text-gray-600 hover:text-black font-bold text-lg px-3 py-2 rounded-lg hover:bg-gray-100 transition-all duration-180"
             >
               특별실
