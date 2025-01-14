@@ -438,7 +438,7 @@ export default function MealSection() {
           {meal.메뉴.length > 2 ? (
             meal.메뉴.map((item, index) => (
               <li key={index} className="mb-2">{item}</li>
-            ))
+            )) 
           ) : (
             <li className="mb-2">맛있는 집밥!</li>
           )}
