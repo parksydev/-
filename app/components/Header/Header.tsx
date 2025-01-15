@@ -43,7 +43,7 @@ export default function Header() {
               quality={100}
               priority
             />
-            <h1 className="text-lg font-bold">이디저디</h1>
+            <h1 className="text-[21px] font-extrabold">이디저디</h1>
           </Link>
           <div className="flex items-center gap-6 ml-4">
             <Link 
