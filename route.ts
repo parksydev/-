@@ -11,15 +11,22 @@ export async function GET(request: Request) {
   try {
     const response = await fetch(
       `https://open.neis.go.kr/hub/mealServiceDietInfo` +
-      `?KEY=${NEIS_API_KEY}` +
-      `&Type=json` +
-      `&ATPT_OFCDC_SC_CODE=${ATPT_OFCDC_SC_CODE}` +
+      `?ATPT_OFCDC_SC_CODE=${ATPT_OFCDC_SC_CODE}` +
       `&SD_SCHUL_CODE=${SD_SCHUL_CODE}` +
-      `&MLSV_YMD=${date?.replace(/-/g, '')}`
+      `&KEY=${NEIS_API_KEY}` +
+      `&MLSV_YMD=${date?.replace(/-/g, '')}` +
+      `&Type=json`
     );
 
     const data = await response.json();
     
+    // NEIS API 응답 데이터를 우리 형식으로 변환
+    const meals = {
+      breakfast: { 메뉴: [], 칼로리: " " },
+      lunch: { 메뉴: [], 칼로리: " " },
+      dinner: { 메뉴: [], 칼로리: " " }
+    };
+
     // API 응답 에러 체크 추가
     if (data.RESULT?.CODE === 'INFO-200') {
       // 데이터가 없는 경우 빈 응답 반환
@@ -30,13 +37,6 @@ export async function GET(request: Request) {
       console.error('NEIS API 응답 데이터 오류:', data);
       throw new Error('급식 데이터 형식이 올바르지 않습니다.');
     }
-
-    // NEIS API 응답 데이터를 우리 형식으로 변환
-    const meals = {
-      breakfast: { 메뉴: [], 칼로리: " " },
-      lunch: { 메뉴: [], 칼로리: " " },
-      dinner: { 메뉴: [], 칼로리: " " }
-    };
 
     if (data.mealServiceDietInfo) {
       data.mealServiceDietInfo[1].row.forEach((meal: any) => {
