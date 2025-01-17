@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 type MealType = {
   메뉴: string[];
   칼로리: string;
+  시간?: string;
 }
 
 export default function MealSection() {
@@ -13,9 +14,9 @@ export default function MealSection() {
     lunch: MealType;
     dinner: MealType;
   }>({
-    breakfast: { 메뉴: [], 칼로리: " " },
-    lunch: { 메뉴: [], 칼로리: " " },
-    dinner: { 메뉴: [], 칼로리: " " }
+    breakfast: { 메뉴: [], 칼로리: " ", 시간: "조식" },
+    lunch: { 메뉴: [], 칼로리: " ", 시간: "중식" },
+    dinner: { 메뉴: [], 칼로리: " ", 시간: "석식" }
   });
 
   useEffect(() => {
@@ -38,17 +39,28 @@ export default function MealSection() {
         }
         
         setMeals({
-          breakfast: data.breakfast || { 메뉴: [], 칼로리: " " },
-          lunch: data.lunch || { 메뉴: [], 칼로리: " " },
-          dinner: data.dinner || { 메뉴: [], 칼로리: " " }
+          breakfast: {
+            메뉴: data.breakfast?.메뉴 || [],
+            칼로리: data.breakfast?.칼로리 || "정보 없음",
+            시간: "조식"
+          },
+          lunch: {
+            메뉴: data.lunch?.메뉴 || [],
+            칼로리: data.lunch?.칼로리 || "정보 없음",
+            시간: "중식"
+          },
+          dinner: {
+            메뉴: data.dinner?.메뉴 || [],
+            칼로리: data.dinner?.칼로리 || "정보 없음",
+            시간: "석식"
+          }
         });
       } catch (error) {
         console.error('급식 정보를 불러오는데 실패했습니다:', error);
-        // 에러 발생 시 기본값으로 설정
         setMeals({
-          breakfast: { 메뉴: [], 칼로리: "정보 없음" },
-          lunch: { 메뉴: [], 칼로리: "정보 없음" },
-          dinner: { 메뉴: [], 칼로리: "정보 없음" }
+          breakfast: { 메뉴: [], 칼로리: "정보 없음", 시간: "조식" },
+          lunch: { 메뉴: [], 칼로리: "정보 없음", 시간: "중식" },
+          dinner: { 메뉴: [], 칼로리: "정보 없음", 시간: "석식" }
         });
       }
     };
