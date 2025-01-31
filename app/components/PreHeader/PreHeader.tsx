@@ -9,8 +9,8 @@ import Link from "next/link";
 
 export default function PreHeader() {
   return (
-    <header className="w-full border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-8 h-16 flex items-center justify-between">
+    <header className="w-full border-b border-gray-200 bg-white">
+      <div className="max-w-5xl xl:max-w-6xl mx-auto px-5 sm:px-7 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center gap-2">
             <Image

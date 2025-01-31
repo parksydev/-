@@ -208,7 +208,7 @@ export default function TestPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/20 z-0 h-[590px]"></div>
 
         {/* Special Room Requests Table Container */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 pt-10 h-[590px]">
+        <div className="relative z-10 max-w-5xl xl:max-w-6xl mx-auto px-4 pt-10 h-[590px]">
           <div className="p-6 h-full relative">
             <div className="flex items-center pb-4">
               <h2 className="text-xl font-bold text-gray-100">특별실 신청 현황</h2>

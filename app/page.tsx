@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import MealSection from './components/MealSection/MealSection';
 import Footer from './components/Footer/Footer';
+import Image from 'next/image';
 
 // 인터페이스 정의 추가
 interface FormErrors {
@@ -549,75 +550,94 @@ export default function Home() {
   return (
     <>
       <div className={`min-h-screen flex flex-col relative ${showLoginPopup ? 'brightness-75' : ''}`}>
-        <PreHeader />
-        <main className="flex-1">
-          {/* Hero Section */}
-          <div className="relative w-full h-[75vh] bg-cover bg-center" style={{ backgroundImage: 'url("/background01.jpg")' }}>
-            {/* Noise overlay */}
-            <div 
-              className="absolute inset-0 opacity-[0.25] mix-blend-soft-light"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                backgroundSize: '200px 200px'
-              }}
-            ></div>
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <PreHeader />
+        </div>
+        <div className="pt-[60px] bg-black">
+          <main className="flex-1">
+            {/* Hero Section */}
+            <div className="relative w-full h-[75vh] bg-cover bg-center" style={{ backgroundImage: 'url("/background01.jpg")' }}>
+              {/* Noise overlay */}
+              <div 
+                className="absolute inset-0 opacity-[0.25] mix-blend-soft-light"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                  backgroundSize: '200px 200px'
+                }}
+              ></div>
 
-            {/* Overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/20"></div>
-            
-            {/* Content */}
-            <div className="relative h-full flex items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex flex-col items-start w-full ">
-                {/* Text Content and Button in one group */}
-                <div className="flex items-center gap-8">
-                  <div className="text-left">
-                    <h2 className="text-lg font-medium text-gray-300 mb-3"></h2>
-                    <h1 className="text-4xl text-white mb-4 leading-tight">
-                      <span className="font-medium">새로워진</span>{' '}
-                      <span className="font-extrabold">이디저디</span>
-                    </h1>
-                    <p className="text-base text-gray-300">
-                      새로운 이디저디를 지금 바로 만나보세요
-                    </p>
+              {/* Overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/20"></div>
+              
+              {/* Content */}
+              <div className="relative h-full flex items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-start w-full xl:pl-0 pl-8">
+                  {/* Text Content and Button in one group */}
+                  <div className="flex items-center gap-8">
+                    <div className="text-left">
+                      <h2 className="text-lg font-medium text-gray-300 mb-3"></h2>
+                      <h1 className="text-4xl text-white mb-4 leading-tight">
+                        <span className="font-medium">새로워진</span>{' '}
+                        <span className="font-extrabold">이디저디</span>
+                      </h1>
+                      <p className="text-base text-gray-300">
+                        새로운 이디저디를 지금 바로 만나보세요
+                      </p>
+                    </div>
+
+                    <button
+                      className="font-bold px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-200 transition-colors ml-3"
+                      onClick={openLoginPopup}
+                    >
+                      시작하기
+                    </button>
                   </div>
+                </div>
 
-                  <button
-                    className="font-bold px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-200 transition-colors ml-3"
-                    onClick={openLoginPopup}
-                  >
-                    시작하기
-                  </button>
+                {/* Pagination Dots */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+
                 </div>
               </div>
-
-              {/* Pagination Dots */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-
-              </div>
             </div>
-          </div>
 
-          {/* Meal Section */}
-          <section className="bg-white py-28">
-            <div className="max-w-6xl mx-auto px-4">
-              <div className="flex items-center pr-5 pl-5 pb-2 mt-5">
-                <h2 className="text-xl font-bold">
-                  {new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </h2>
-                <button 
-                  className="text-gray-600 bg-gray-100 hover:bg-gray-200 text-xs font-medium transition-colors ml-3 px-2.5 py-1 rounded-full"
-                  onClick={() => {/* 더보기 기능 추가 */}}
-                >
-                  더보기
-                </button>
+            {/* Meal Section */}
+            <section className="bg-white py-28">
+              <div className="max-w-6xl mx-auto px-4">
+                <div className="flex items-center pr-5 pl-5 pb-2 mt-5">
+                  <h2 className="text-xl font-bold">
+                    {new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </h2>
+                  <button 
+                    className="text-gray-600 bg-gray-100 hover:bg-gray-200 text-xs font-medium transition-colors ml-3 px-2.5 py-1 rounded-full"
+                    onClick={() => {/* 더보기 기능 추가 */}}
+                  >
+                    더보기
+                  </button>
+                  <button className="ml-auto mr-2">
+                    <Image 
+                      src="/interrogation.png" 
+                      alt="도움말" 
+                      width={18} 
+                      height={18}
+                    />
+                  </button>
+                </div>
+                <div className="flex flex-col">
+                  <MealSection />
+                  <div className="max-w-6xl mx-auto w-full mt-8 px-5">
+                    <img 
+                      src="/background02.jpg" 
+                      alt="Background" 
+                      className="w-full h-auto rounded-2xl"
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <MealSection />
-              </div>
-            </div>
-          </section>
-          <Footer />
-        </main>
+            </section>
+            <Footer />
+          </main>
+        </div>
       </div>
 
       <AnimatePresence>

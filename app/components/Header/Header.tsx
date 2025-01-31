@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <header className="w-full border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-5xl xl:max-w-6xl mx-auto px-5 sm:px-7 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-12">
           <Link href="/home" className="flex items-center gap-2">
           <Image
