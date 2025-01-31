@@ -22,9 +22,9 @@ export async function GET(request: Request) {
     
     // NEIS API 응답 데이터를 우리 형식으로 변환
     const meals = {
-      breakfast: { 메뉴: [], 칼로리: " " },
-      lunch: { 메뉴: [], 칼로리: " " },
-      dinner: { 메뉴: [], 칼로리: " " }
+      breakfast: { 메뉴: [], 칼로리: "", 시간: "조식" },
+      lunch: { 메뉴: [], 칼로리: "", 시간: "중식" },
+      dinner: { 메뉴: [], 칼로리: "", 시간: "석식" }
     };
 
     // API 응답 에러 체크 추가
@@ -40,10 +40,14 @@ export async function GET(request: Request) {
 
     if (data.mealServiceDietInfo) {
       data.mealServiceDietInfo[1].row.forEach((meal: any) => {
-        const menuItems = meal.DDISH_NM.split('<br/>');
+        const menuItems = meal.DDISH_NM.split('<br/>').map((item: string) => 
+          item.trim().replace(/\([^)]*\)/g, '') // 알레르기 정보 제거
+        ).filter((item: string) => item !== '');
+        
         const mealType = {
           메뉴: menuItems,
-          칼로리: meal.CAL_INFO
+          칼로리: meal.CAL_INFO,
+          시간: meal.MMEAL_SC_NM // 식사 시간 정보 추가
         };
 
         switch (meal.MMEAL_SC_CODE) {
