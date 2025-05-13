@@ -2,11 +2,11 @@
 
 import Header from "@/app/components/Header/Header";
 import { useState } from "react";
-import TimeSelection from "@/app/components/TimeSelection/TimeSelection";
-import LocationSelection from "@/app/components/LocationSelection/LocationSelection";
-import PurposeSelection from "@/app/components/PurposeSelection/PurposeSelection";
-import StudentSelection from "@/app/components/StudentSelection/StudentSelection";
-import TeacherSelection from "@/app/components/TeacherSelection/TeacherSelection";
+import TimeSelection from "@/app/components/specialroom/TimeSelection/TimeSelection";
+import LocationSelection from "@/app/components/specialroom/LocationSelection/LocationSelection";
+import PurposeSelection from "@/app/components/specialroom/PurposeSelection/PurposeSelection";
+import StudentSelection from "@/app/components/specialroom/StudentSelection/StudentSelection";
+import TeacherSelection from "@/app/components/specialroom/TeacherSelection/TeacherSelection";
 import Footer from "@/app/components/Footer/Footer";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'

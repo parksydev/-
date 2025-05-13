@@ -1,0 +1,138 @@
+.sidebar {
+  width: 290px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.5px 0 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.header {
+  padding: 15px 14.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.headerButton {
+  background: none;
+  border: none;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  color: rgb(0, 122, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background-color 0.1s ease;
+}
+
+.headerButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.userContainer {
+  width: 261px;
+  height: 48px;
+  background-color: rgba(120, 120, 128, 0.12);
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.userIconWrapper {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userName {
+  color: #000000;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.mainMenu {
+  margin-top: 0px;
+}
+
+.menuItem {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  margin: 0 14.75px;
+  padding: 0 7px;
+  border-radius: 11px;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  transition: background-color 0.1s ease;
+}
+
+.menuItem:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.menuIcon {
+  width: 25.375px;
+  height: 28px;
+  margin-right: 8.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 122, 255);
+  font-size: 28px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Apple Color Emoji";
+}
+
+.menuIconText {
+  font-size: 28px;
+}
+
+.menuText {
+  color: #000000;
+  font-size: 16px;
+}
+
+.chevron {
+  margin-left: auto;
+  color: rgb(0, 122, 255);
+  font-size: 12px;
+}
+
+.section {
+  margin-top: 12px;
+}
+
+.sectionHeader {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 21.75px;
+  cursor: pointer;
+  background-color: #FFFFFF;
+}
+
+.sectionTitle {
+  color: #000000;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.dropdownChevron {
+  margin-left: auto;
+  color: #ADB5BD;
+  font-size: 12px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+} 

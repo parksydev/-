@@ -143,21 +143,16 @@ export default function TestPage() {
   ];
 
   useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn')
+    // 로그인 체크 로직 제거
     const userDataStr = sessionStorage.getItem('userData')
-
-    if (!isLoggedIn || !userDataStr) {
-      document.location.href = '/'
-      return
-    }
-
-    try {
-      const parsedUserData = JSON.parse(userDataStr)
-      setUserData(parsedUserData)
-    } catch (error) {
-      console.error('Failed to parse user data:', error)
-      document.location.href = '/'
-      return
+    
+    if (userDataStr) {
+      try {
+        const parsedUserData = JSON.parse(userDataStr)
+        setUserData(parsedUserData)
+      } catch (error) {
+        console.error('Failed to parse user data:', error)
+      }
     }
     
     // 특별실 신청 데이터 가져오기
